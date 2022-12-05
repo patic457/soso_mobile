@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payment_method_function/presentation/pages/payment_method_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -78,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(children: []),
+        child: Column(children: [PaymentMethodPage()]),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
