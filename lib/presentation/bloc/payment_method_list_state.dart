@@ -1,20 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 
-@immutable
-class AppState extends Equatable {
-  final int index;
-  final String text;
+import '../../domain/entities/payment_method_entity.dart';
 
-  const AppState.empty()
-      : index = 0,
-        text = 'Initial Text';
-
-  const AppState({
-    required this.index,
-    required this.text,
-  });
+abstract class PaymentMethodListState extends Equatable {
+  const PaymentMethodListState();
 
   @override
-  List<Object> get props => [index, text];
+  List<Object> get props => [];
+}
+
+class ListPaymentMethodLoading extends PaymentMethodListState {
+  @override
+  String toString() => 'Loading....';
+}
+
+class ListPaymentMethodInitial extends PaymentMethodListState {}
+
+class MainListPaymentMethod extends PaymentMethodListState {
+  final List<PaymentMethodEntity> paymentMethods;
+  const MainListPaymentMethod({
+    required this.paymentMethods,
+  });
+
+  MainListPaymentMethod copyWith({
+    List<PaymentMethodEntity>? paymentMethods,
+  }) {
+    return MainListPaymentMethod(
+      paymentMethods: paymentMethods ?? this.paymentMethods,
+    );
+  }
+
+  @override
+  List<Object> get props => [
+        paymentMethods,
+      ];
 }
